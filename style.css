@@ -1,1 +1,332 @@
+/* ============================================= */
+/* GLOBAL */
+/* ============================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Cormorant Garamond', serif;
+  background: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+section { position: relative; }
+
+/* ============================================= */
+/* STICKY NAV */
+/* ============================================= */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(6px);
+  padding: 14px 0;
+}
+
+.navbar nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.navbar a {
+  color: #f7c6d9;
+  text-decoration: none;
+  font-size: 1.05rem;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover { color: #ff8fb3; }
+
+/* ============================================= */
+/* HERO */
+/* ============================================= */
+.hero {
+  height: 100vh;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-bg-video,
+.hero-bg-gif {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.hero-title {
+  position: relative;
+  z-index: 1;
+  font-family: 'Great Vibes', cursive;
+  font-size: 4rem;
+  color: #ffd6e8;
+  text-shadow: 0 0 20px rgba(255, 182, 213, 0.6);
+  padding: 0 20px;
+}
+
+.hero-name { color: #ff8fb3; }
+
+.hero-heart {
+  position: relative;
+  z-index: 1;
+  width: 220px;
+  height: 220px;
+}
+
+.hero-heart img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: spin 6s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
+}
+
+.start-btn {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+  border: 2px solid #ff8fb3;
+  color: #ff8fb3;
+  padding: 14px 36px;
+  font-size: 1.1rem;
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: 1px;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.start-btn:hover {
+  background: #ff8fb3;
+  color: #000;
+}
+
+/* ============================================= */
+/* SHARED SECTION STYLES */
+/* ============================================= */
+.section {
+  min-height: 100vh;
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.section h2 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3rem;
+  color: #ff8fb3;
+  margin-bottom: 30px;
+}
+
+/* ============================================= */
+/* SECTION 1: GREET */
+/* ============================================= */
+.greet-section {
+  /* 🖼️ PLACEHOLDER: replace with your background image */
+  background: url('assets/PLACEHOLDER-GREET-BG.jpg') center/cover no-repeat;
+}
+
+.greet-content {
+  background: rgba(0, 0, 0, 0.55);
+  padding: 40px;
+  border-radius: 20px;
+  max-width: 700px;
+}
+
+.greet-content h2 { font-size: 2.5rem; }
+.greet-content p { font-size: 1.3rem; margin-bottom: 30px; }
+
+.greet-photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.greet-photos img {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  opacity: 0;
+  animation: fadeFloat 1.5s ease forwards;
+}
+
+.greet-photos img:nth-child(2) { animation-delay: 0.3s; }
+.greet-photos img:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes fadeFloat {
+  0%   { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================= */
+/* SECTION 2: GALLERY CAROUSEL */
+/* ============================================= */
+.gallery-section { background: #0a0a0a; }
+
+.carousel-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: scrollLeft 30s linear infinite;
+}
+
+.carousel-track img {
+  width: 280px;
+  height: 340px;
+  object-fit: cover;
+  border-radius: 14px;
+  flex-shrink: 0;
+}
+
+@keyframes scrollLeft {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); } /* -50% because script.js duplicates the track */
+}
+
+/* ============================================= */
+/* SECTION 3: THE LETTER */
+/* ============================================= */
+.letter-section { background: #050505; }
+
+.envelope-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.envelope {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  cursor: pointer;
+}
+
+.envelope-body {
+  position: absolute;
+  inset: 0;
+  background: #f7c6d9;
+  border-radius: 6px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  z-index: 1;
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0; left: 0;
+  width: 0; height: 0;
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+  border-top: 110px solid #ff8fb3;
+  z-index: 3;
+  transform-origin: top;
+  transition: transform 0.6s ease;
+}
+
+.letter-image {
+  position: absolute;
+  left: 10%;
+  top: 10px;
+  width: 80%;
+  z-index: 2;
+  opacity: 0;
+  transition: all 0.8s ease 0.3s;
+  border-radius: 4px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+/* Open state, toggled by script.js */
+.envelope.open .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+
+.envelope.open .letter-image {
+  opacity: 1;
+  top: -220px;
+}
+
+.envelope-hint {
+  color: #ccc;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+/* ============================================= */
+/* SECTION 4: 50 REASONS GRID */
+/* ============================================= */
+.reasons-section { background: #0a0a0a; }
+
+.reasons-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* desktop: 4 columns */
+  gap: 16px;
+  max-width: 1100px;
+  width: 100%;
+}
+
+.reasons-grid img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+@media (max-width: 700px) {
+  .reasons-grid {
+    grid-template-columns: repeat(2, 1fr); /* mobile: 2 columns */
+  }
+}
+
+/* ============================================= */
+/* SECTION 5: CLOSING */
+/* ============================================= */
+.closing-section { background: #000; }
+
+.closing-text {
+  font-family: 'Great Vibes', cursive;
+  color: #ff8fb3;
+  font-size: 2.2rem;
+  max-width: 700px;
+  line-height: 1.6;
+}
+
+/* ============================================= */
+/* RESPONSIVE TWEAKS */
+/* ============================================= */
+@media (max-width: 600px) {
+  .hero-title { font-size: 2.6rem; }
+  .hero-heart { width: 160px; height: 160px; }
+  .section h2 { font-size: 2.2rem; }
+  .greet-photos img { width: 150px; height: 150px; }
+  .envelope { width: 240px; height: 160px; }
+  .envelope-flap { border-left-width: 120px; border-right-width: 120px; border-top-width: 90px; }
+}
