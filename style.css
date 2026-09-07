@@ -48,7 +48,7 @@ section { position: relative; }
 /* ============================================= */
 .hero {
   height: 100vh;
-  background: #000;
+  background: #FFD1DC;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -72,12 +72,12 @@ section { position: relative; }
   z-index: 1;
   font-family: 'Great Vibes', cursive;
   font-size: 4rem;
-  color: #ffd6e8;
-  text-shadow: 0 0 20px rgba(255, 182, 213, 0.6);
+  color: #8E1539;
+  text-shadow: 0 2px 12px rgba(255, 255, 255, 0.5);
   padding: 0 20px;
 }
 
-.hero-name { color: #ff8fb3; }
+.hero-name { color: #C2185B; }
 
 .hero-heart {
   position: relative;
@@ -138,12 +138,25 @@ section { position: relative; }
   margin-bottom: 30px;
 }
 
+/* Darker heading color for sections sitting on the light pink background,
+   so headings don't wash out. The "Greeting" section keeps the lighter
+   pink above since its background is black. */
+.gallery-section h2,
+.letter-section h2,
+.reasons-section h2,
+.closing-section h2 {
+  color: #8E1539;
+}
+
 /* ============================================= */
 /* SECTION 1: GREET */
 /* ============================================= */
 .greet-section {
-  /* 🖼️ PLACEHOLDER: replace with your background image */
-  background: url('assets/PLACEHOLDER-GREET-BG.jpg') center/cover no-repeat;
+  /* This is the ONLY section that stays black per your request.
+     If you still want a background image here, uncomment the line below
+     and it'll show underneath a black-tinted overlay via .greet-content. */
+  background: #000;
+  /* background: url('assets/PLACEHOLDER-GREET-BG.jpg') center/cover no-repeat; */
 }
 
 .greet-content {
@@ -183,7 +196,7 @@ section { position: relative; }
 /* ============================================= */
 /* SECTION 2: GALLERY CAROUSEL */
 /* ============================================= */
-.gallery-section { background: #0a0a0a; }
+.gallery-section { background: #FFD1DC; }
 
 .carousel-wrapper {
   width: 100%;
@@ -214,7 +227,7 @@ section { position: relative; }
 /* ============================================= */
 /* SECTION 3: THE LETTER */
 /* ============================================= */
-.letter-section { background: #050505; }
+.letter-section { background: #FFD1DC; }
 
 .envelope-container {
   display: flex;
@@ -228,14 +241,16 @@ section { position: relative; }
   width: 300px;
   height: 200px;
   cursor: pointer;
+  /* Shadow hugs the actual envelope shape (body + triangular flap)
+     instead of a plain rectangle, so it reads correctly on the pink bg */
+  filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.35));
 }
 
 .envelope-body {
   position: absolute;
   inset: 0;
-  background: #f7c6d9;
+  background: #C2185B; /* darker rose/red so it doesn't blend into the pink page */
   border-radius: 6px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
   z-index: 1;
 }
 
@@ -245,7 +260,7 @@ section { position: relative; }
   width: 0; height: 0;
   border-left: 150px solid transparent;
   border-right: 150px solid transparent;
-  border-top: 110px solid #ff8fb3;
+  border-top: 110px solid #8E1539; /* darker still, so the flap reads as a fold */
   z-index: 3;
   transform-origin: top;
   transition: transform 0.6s ease;
@@ -275,7 +290,7 @@ section { position: relative; }
 }
 
 .envelope-hint {
-  color: #ccc;
+  color: #8E1539;
   font-size: 1rem;
   font-style: italic;
 }
@@ -283,7 +298,7 @@ section { position: relative; }
 /* ============================================= */
 /* SECTION 4: 50 REASONS GRID */
 /* ============================================= */
-.reasons-section { background: #0a0a0a; }
+.reasons-section { background: #FFD1DC; }
 
 .reasons-grid {
   display: grid;
@@ -309,11 +324,11 @@ section { position: relative; }
 /* ============================================= */
 /* SECTION 5: CLOSING */
 /* ============================================= */
-.closing-section { background: #000; }
+.closing-section { background: #FFD1DC; }
 
 .closing-text {
   font-family: 'Great Vibes', cursive;
-  color: #ff8fb3;
+  color: #8E1539;
   font-size: 2.2rem;
   max-width: 700px;
   line-height: 1.6;
