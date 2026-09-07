@@ -16,10 +16,10 @@ window.addEventListener('load', () => {
 // in the browser console (F12 → Console tab) instead of
 // just silently showing a black background.
 // =====================================================
-const heroVideo = document.querySelector('.hero-bg-video');
-if (heroVideo) {
-  heroVideo.addEventListener('error', () => {
-    console.warn('⚠️ Hero background video failed to load. Check that assets/Flower_bg.mp4 exists and the filename casing matches exactly.');
+const frontpageVideo = document.querySelector('.frontpage-bg-video');
+if (frontpageVideo) {
+  frontpageVideo.addEventListener('error', () => {
+    console.warn('⚠️ frontpage background video failed to load. Check that assets/Flower_bg.mp4 exists and the filename casing matches exactly.');
   });
 }
 
