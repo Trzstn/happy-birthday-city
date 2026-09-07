@@ -82,8 +82,8 @@ section { position: relative; }
 .hero-heart {
   position: relative;
   z-index: 1;
-  width: 220px;
-  height: 220px;
+  width: 520px;
+  height: 520px;
 }
 
 .hero-heart img {
