@@ -1,1 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday</title>
 
+<!-- ============================================= -->
+<!-- 🔤 FONT: Cursive + elegant fonts from Google Fonts -->
+<!-- ============================================= -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============================================= -->
+<!-- STICKY NAV -->
+<!-- ============================================= -->
+<header class="navbar">
+  <nav>
+    <a href="#greet">Greeting</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#letter">The Letter</a>
+    <a href="#reasons">50 Reasons</a>
+    <a href="#closing">For You</a>
+  </nav>
+</header>
+
+<!-- ============================================= -->
+<!-- HERO / FRONT PAGE -->
+<!-- ============================================= -->
+<section id="hero" class="hero">
+
+  <!-- 🖼️ PLACEHOLDER: background spinning flowers GIF -->
+  <video class="hero-bg-video" autoplay muted loop playsinline>
+    <source src="assets/PLACEHOLDER-BACKGROUND-FLOWERS.gif" type="image/gif">
+  </video>
+  <!-- If your background is an actual .gif file (not a video), delete the <video> tag above
+       and use this instead:
+  <img class="hero-bg-gif" src="assets/PLACEHOLDER-BACKGROUND-FLOWERS.gif" alt="background flowers"> -->
+
+  <h1 class="hero-title">Happy Birthday <span class="hero-name">[NAME]</span></h1>
+
+  <!-- 💗 PLACEHOLDER: spinning 3D heart asset (gif/video/model) -->
+  <div class="hero-heart">
+    <img src="assets/PLACEHOLDER-3D-HEART.gif" alt="spinning heart">
+  </div>
+
+  <button id="startBtn" class="start-btn">Open Your Gift</button>
+
+</section>
+
+<!-- ============================================= -->
+<!-- SECTION 1: BIRTHDAY GREET -->
+<!-- ============================================= -->
+<section id="greet" class="section greet-section">
+  <!-- 🖼️ PLACEHOLDER: background image for this section (set in CSS below) -->
+  <div class="greet-content">
+    <h2>PLACEHOLDER: Your greeting headline here</h2>
+    <p>PLACEHOLDER: A few warm lines to your partner go here.</p>
+
+    <div class="greet-photos">
+      <!-- 🖼️ PLACEHOLDER PHOTOS — duplicate this <img> block for as many as you want -->
+      <img class="fade-float" src="assets/PLACEHOLDER-GREET-PHOTO-1.jpg" alt="memory photo 1" loading="lazy">
+      <img class="fade-float" src="assets/PLACEHOLDER-GREET-PHOTO-2.jpg" alt="memory photo 2" loading="lazy">
+      <img class="fade-float" src="assets/PLACEHOLDER-GREET-PHOTO-3.jpg" alt="memory photo 3" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ============================================= -->
+<!-- SECTION 2: OUR GALLERY (auto-scrolling carousel) -->
+<!-- ============================================= -->
+<section id="gallery" class="section gallery-section">
+  <h2>Our Gallery</h2>
+
+  <div class="carousel-wrapper">
+    <div class="carousel-track" id="carouselTrack">
+      <!-- 🖼️ PLACEHOLDER PHOTOS — add/remove as many <img> as you like -->
+      <img src="assets/PLACEHOLDER-GALLERY-1.jpg" alt="gallery photo 1" loading="lazy">
+      <img src="assets/PLACEHOLDER-GALLERY-2.jpg" alt="gallery photo 2" loading="lazy">
+      <img src="assets/PLACEHOLDER-GALLERY-3.jpg" alt="gallery photo 3" loading="lazy">
+      <img src="assets/PLACEHOLDER-GALLERY-4.jpg" alt="gallery photo 4" loading="lazy">
+      <img src="assets/PLACEHOLDER-GALLERY-5.jpg" alt="gallery photo 5" loading="lazy">
+      <img src="assets/PLACEHOLDER-GALLERY-6.jpg" alt="gallery photo 6" loading="lazy">
+      <!-- The track is auto-duplicated by script.js so the loop is seamless — don't duplicate manually -->
+    </div>
+  </div>
+</section>
+
+<!-- ============================================= -->
+<!-- SECTION 3: THE LETTER -->
+<!-- ============================================= -->
+<section id="letter" class="section letter-section">
+  <h2>The Letter</h2>
+
+  <div class="envelope-container" id="envelopeContainer">
+    <div class="envelope" id="envelope">
+      <div class="envelope-flap"></div>
+      <div class="envelope-body"></div>
+      <!-- 📩 PLACEHOLDER: the letter image that slides out -->
+      <img class="letter-image" src="assets/PLACEHOLDER-LETTER.jpg" alt="the letter">
+    </div>
+    <p class="envelope-hint">Tap the envelope</p>
+  </div>
+</section>
+
+<!-- ============================================= -->
+<!-- SECTION 4: 50 REASONS WHY I LOVE YOU -->
+<!-- ============================================= -->
+<section id="reasons" class="section reasons-section">
+  <h2>50 Reasons Why I Love You</h2>
+  <div class="reasons-grid" id="reasonsGrid">
+    <!-- Grid is generated automatically by script.js (50 placeholder slots). -->
+    <!-- To replace an image, just edit the file names in script.js — see REASONS_IMAGES array. -->
+  </div>
+</section>
+
+<!-- ============================================= -->
+<!-- SECTION 5: CLOSING MESSAGE -->
+<!-- ============================================= -->
+<section id="closing" class="section closing-section">
+  <!-- 📝 PLACEHOLDER: your closing message text -->
+  <p class="closing-text">PLACEHOLDER: Write your final, closing love message to your partner here. It can be as long or as short as you like.</p>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
