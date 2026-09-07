@@ -11,6 +11,19 @@ window.addEventListener('load', () => {
 });
 
 // =====================================================
+// HERO VIDEO DIAGNOSTICS — if the background video fails
+// to load (wrong filename/path), this logs a clear warning
+// in the browser console (F12 → Console tab) instead of
+// just silently showing a black background.
+// =====================================================
+const heroVideo = document.querySelector('.hero-bg-video');
+if (heroVideo) {
+  heroVideo.addEventListener('error', () => {
+    console.warn('⚠️ Hero background video failed to load. Check that assets/Flower_bg.mp4 exists and the filename casing matches exactly.');
+  });
+}
+
+// =====================================================
 // START BUTTON — scrolls to Section 1
 // =====================================================
 document.getElementById('startBtn').addEventListener('click', () => {
