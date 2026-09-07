@@ -48,7 +48,7 @@ section { position: relative; }
 /* ============================================= */
 .hero {
   height: 100vh;
-  background: #FFD1DC;
+  background: #000;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -72,12 +72,12 @@ section { position: relative; }
   z-index: 1;
   font-family: 'Great Vibes', cursive;
   font-size: 4rem;
-  color: #8E1539;
-  text-shadow: 0 2px 12px rgba(255, 255, 255, 0.5);
+  color: #ffd6e8;
+  text-shadow: 0 0 20px rgba(255, 182, 213, 0.6);
   padding: 0 20px;
 }
 
-.hero-name { color: #C2185B; }
+.hero-name { color: #ff8fb3; }
 
 .hero-heart {
   position: relative;
@@ -152,11 +152,7 @@ section { position: relative; }
 /* SECTION 1: GREET */
 /* ============================================= */
 .greet-section {
-  /* This is the ONLY section that stays black per your request.
-     If you still want a background image here, uncomment the line below
-     and it'll show underneath a black-tinted overlay via .greet-content. */
-  background: #000;
-  /* background: url('assets/PLACEHOLDER-GREET-BG.jpg') center/cover no-repeat; */
+  background: #FFD1DC;
 }
 
 .greet-content {
