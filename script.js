@@ -1,4 +1,16 @@
 // =====================================================
+// ALWAYS OPEN ON THE HERO PAGE
+// Mobile browsers sometimes try to "restore" scroll position
+// or jump to a section on load — this forces it back to top.
+// =====================================================
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+window.addEventListener('load', () => {
+  window.scrollTo(0, 0);
+});
+
+// =====================================================
 // START BUTTON — scrolls to Section 1
 // =====================================================
 document.getElementById('startBtn').addEventListener('click', () => {
@@ -47,4 +59,3 @@ if (reasonsGrid) {
     reasonsGrid.appendChild(img);
   });
 }
-
