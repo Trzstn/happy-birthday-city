@@ -23,7 +23,7 @@
     <a href="#greet">Greetings</a>
     <a href="#gallery">Our Gallery</a>
     <a href="#letter">My Letter</a>
-    <a href="#reasons">50 Reasons Why</a>
+    <a href="#reasons">50 Reasons Why Ily</a>
     <a href="#closing">To My Felicity</a>
   </nav>
 </header>
@@ -55,14 +55,14 @@
 <section id="greet" class="section greet-section">
   <!-- 🖼️ PLACEHOLDER: background image for this section (set in CSS below) -->
   <div class="greet-content">
-    <h2>Happiest Birthday to my beautiful Bubbaaa!</h2>
-    <p>Since it's your special day, I'd like to show you some special memories we've spent together</p>
+    <h2>PLACEHOLDER: Your greeting headline here</h2>
+    <p>PLACEHOLDER: A few warm lines to your partner go here.</p>
 
     <div class="greet-photos">
       <!-- 🖼️ PLACEHOLDER PHOTOS — duplicate this <img> block for as many as you want -->
-      <img class="fade-float" src="assets/PLACEHOLDER-GREET-PHOTO-1.png" alt="memory photo 1" loading="lazy">
-      <img class="fade-float" src="assets/PLACEHOLDER-GREET-PHOTO-2.png" alt="memory photo 2" loading="lazy">
-      <img class="fade-float" src="assets/PLACEHOLDER-GREET-PHOTO-3.png" alt="memory photo 3" loading="lazy">
+      <img class="fade-float" src="assets/PLACEHOLDER-GREET-PHOTO-1.jpg" alt="memory photo 1" loading="lazy">
+      <img class="fade-float" src="assets/PLACEHOLDER-GREET-PHOTO-2.jpg" alt="memory photo 2" loading="lazy">
+      <img class="fade-float" src="assets/PLACEHOLDER-GREET-PHOTO-3.jpg" alt="memory photo 3" loading="lazy">
     </div>
   </div>
 </section>
@@ -76,12 +76,12 @@
   <div class="carousel-wrapper">
     <div class="carousel-track" id="carouselTrack">
       <!-- 🖼️ PLACEHOLDER PHOTOS — add/remove as many <img> as you like -->
-      <img src="assets/PLACEHOLDER-GALLERY-1.png" alt="gallery photo 1" loading="lazy">
-      <img src="assets/PLACEHOLDER-GALLERY-2.png" alt="gallery photo 2" loading="lazy">
-      <img src="assets/PLACEHOLDER-GALLERY-3.png" alt="gallery photo 3" loading="lazy">
-      <img src="assets/PLACEHOLDER-GALLERY-4.png" alt="gallery photo 4" loading="lazy">
-      <img src="assets/PLACEHOLDER-GALLERY-5.png" alt="gallery photo 5" loading="lazy">
-      <img src="assets/PLACEHOLDER-GALLERY-6.png" alt="gallery photo 6" loading="lazy">
+      <img src="assets/PLACEHOLDER-GALLERY-1.jpg" alt="gallery photo 1" loading="lazy">
+      <img src="assets/PLACEHOLDER-GALLERY-2.jpg" alt="gallery photo 2" loading="lazy">
+      <img src="assets/PLACEHOLDER-GALLERY-3.jpg" alt="gallery photo 3" loading="lazy">
+      <img src="assets/PLACEHOLDER-GALLERY-4.jpg" alt="gallery photo 4" loading="lazy">
+      <img src="assets/PLACEHOLDER-GALLERY-5.jpg" alt="gallery photo 5" loading="lazy">
+      <img src="assets/PLACEHOLDER-GALLERY-6.jpg" alt="gallery photo 6" loading="lazy">
       <!-- The track is auto-duplicated by script.js so the loop is seamless — don't duplicate manually -->
     </div>
   </div>
@@ -98,7 +98,7 @@
       <div class="envelope-flap"></div>
       <div class="envelope-body"></div>
       <!-- 📩 PLACEHOLDER: the letter image that slides out -->
-      <img class="letter-image" src="assets/PLACEHOLDER-LETTER.png" alt="the letter">
+      <img class="letter-image" src="assets/PLACEHOLDER-LETTER.jpg" alt="the letter">
     </div>
     <p class="envelope-hint">Tap the envelope</p>
   </div>
@@ -122,8 +122,18 @@
   <!-- 📝 PLACEHOLDER: short heading, uses the cursive "Great Vibes" font -->
   <h2> Happy Birthday again my Love! </h2>
   <!-- 📝 PLACEHOLDER: your closing message text, uses "Cormorant Garamond" -->
-  <p class="closing-text">I love you because you aren't just someone I have feelings for, you've become someone I'd do anything for.<br>I love you Felicity, not just because of anything you could give or do for me, but because out of all the people I could have met—somehow I met you—and getting to know you has made you someone I couldn't even imagine my life without.<br> I wish you more birthdays to come City, and I hope we could celebrate all of them together. I love you, always have, always will.<br>- Tj :p</p>
+  <p class="closing-text">I love you because you aren't just someone I have feelings for, you've become someone I'd do anything for..<br>I love you Felicity, not just because of anything you could give or do for me, but because out of all the people I could have met—somehow I met you—and getting to know you has made you someone I wouldn't want to imagine my life without.<br> I wish you more birthdays to come City, and I hope we could celebrate all of them together. I love you, always have, always will.<br>- Tj :p</p>
 </section>
+
+<!-- ============================================= -->
+<!-- LETTER FULLSCREEN VIEWER (opens when you click the letter image) -->
+<!-- ============================================= -->
+<div class="letter-modal" id="letterModal">
+  <button class="letter-modal-close" id="letterModalClose" aria-label="Close">&times;</button>
+  <div class="letter-modal-viewport" id="letterModalViewport">
+    <img class="letter-modal-img" id="letterModalImg" src="assets/PLACEHOLDER-LETTER.png" alt="the letter fullscreen">
+  </div>
+</div>
 
 <script src="script.js"></script>
 </body>
