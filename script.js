@@ -40,21 +40,28 @@ if (track) {
 }
 
 // =====================================================
-// THE LETTER — click envelope to open/close
+// THE LETTER — click envelope to open/close. When opening,
+// the fullscreen letter automatically appears shortly after
+// (once the slide-out animation has played).
 // =====================================================
 const envelope = document.getElementById('envelope');
 if (envelope) {
   envelope.addEventListener('click', () => {
-    envelope.classList.toggle('open');
+    const isNowOpen = envelope.classList.toggle('open');
+    if (isNowOpen) {
+      setTimeout(() => {
+        openLetterModal();
+      }, 1100); // matches the letter-image's 0.3s delay + 0.8s slide transition
+    }
   });
 }
 
 // =====================================================
-// LETTER FULLSCREEN VIEWER — click the letter image (once
-// it's slid out of the envelope) to view it fullscreen.
-// Zoom by scrolling (desktop) or pinching with two fingers
-// (mobile), then drag/swipe to pan around while zoomed in.
-// Close with the × button or by clicking the dark background.
+// LETTER FULLSCREEN VIEWER — opens automatically after the
+// envelope's slide-out animation, or by clicking the letter
+// image directly afterwards. Zoom by scrolling (desktop) or
+// pinching with two fingers (mobile). Close with the ×
+// button or by clicking the dark background.
 // =====================================================
 const letterImage = document.querySelector('.letter-image');
 const letterModal = document.getElementById('letterModal');
@@ -63,40 +70,25 @@ const letterModalClose = document.getElementById('letterModalClose');
 const letterModalViewport = document.getElementById('letterModalViewport');
 
 let letterZoom = 1;
-let letterPanX = 0;
-let letterPanY = 0;
 const LETTER_ZOOM_MIN = 1;
 const LETTER_ZOOM_MAX = 3;
 
-function updateLetterTransform() {
-  if (letterModalImg) {
-    letterModalImg.style.transform = `translate(${letterPanX}px, ${letterPanY}px) scale(${letterZoom})`;
-  }
-}
-
 function setLetterZoom(zoom) {
   letterZoom = Math.min(LETTER_ZOOM_MAX, Math.max(LETTER_ZOOM_MIN, zoom));
-  updateLetterTransform();
-}
-
-function resetLetterView() {
-  letterZoom = 1;
-  letterPanX = 0;
-  letterPanY = 0;
-  updateLetterTransform();
+  if (letterModalImg) letterModalImg.style.transform = `scale(${letterZoom})`;
 }
 
 function openLetterModal() {
   if (!letterModal) return;
   letterModal.classList.add('open');
-  resetLetterView();
+  setLetterZoom(1);
   document.body.style.overflow = 'hidden'; // lock background scroll while modal is open
 }
 
 function closeLetterModal() {
   if (!letterModal) return;
   letterModal.classList.remove('open');
-  resetLetterView();
+  setLetterZoom(1);
   document.body.style.overflow = '';
 }
 
@@ -123,42 +115,7 @@ if (letterModalViewport) {
   }, { passive: false });
 }
 
-// Desktop: click-and-drag to pan around while zoomed in
-let isMouseDragging = false;
-let mouseDragStartX = 0;
-let mouseDragStartY = 0;
-let mousePanStartX = 0;
-let mousePanStartY = 0;
-
-if (letterModalImg) {
-  letterModalImg.addEventListener('mousedown', (e) => {
-    isMouseDragging = true;
-    mouseDragStartX = e.clientX;
-    mouseDragStartY = e.clientY;
-    mousePanStartX = letterPanX;
-    mousePanStartY = letterPanY;
-    letterModalImg.style.cursor = 'grabbing';
-  });
-}
-
-window.addEventListener('mousemove', (e) => {
-  if (!isMouseDragging) return;
-  letterPanX = mousePanStartX + (e.clientX - mouseDragStartX);
-  letterPanY = mousePanStartY + (e.clientY - mouseDragStartY);
-  updateLetterTransform();
-});
-
-window.addEventListener('mouseup', () => {
-  isMouseDragging = false;
-  if (letterModalImg) letterModalImg.style.cursor = '';
-});
-
-// Mobile: one finger drags/pans, two fingers pinch-zoom
-let touchMode = null; // 'pan' or 'pinch'
-let touchPanStartX = 0;
-let touchPanStartY = 0;
-let touchPanOriginX = 0;
-let touchPanOriginY = 0;
+// Mobile: two-finger pinch to zoom
 let pinchStartDist = null;
 let pinchStartZoom = 1;
 
@@ -170,26 +127,14 @@ function getTouchDist(touches) {
 
 if (letterModalViewport) {
   letterModalViewport.addEventListener('touchstart', (e) => {
-    if (e.touches.length === 1) {
-      touchMode = 'pan';
-      touchPanStartX = e.touches[0].clientX;
-      touchPanStartY = e.touches[0].clientY;
-      touchPanOriginX = letterPanX;
-      touchPanOriginY = letterPanY;
-    } else if (e.touches.length === 2) {
-      touchMode = 'pinch';
+    if (e.touches.length === 2) {
       pinchStartDist = getTouchDist(e.touches);
       pinchStartZoom = letterZoom;
     }
   });
 
   letterModalViewport.addEventListener('touchmove', (e) => {
-    if (touchMode === 'pan' && e.touches.length === 1) {
-      e.preventDefault();
-      letterPanX = touchPanOriginX + (e.touches[0].clientX - touchPanStartX);
-      letterPanY = touchPanOriginY + (e.touches[0].clientY - touchPanStartY);
-      updateLetterTransform();
-    } else if (touchMode === 'pinch' && e.touches.length === 2 && pinchStartDist) {
+    if (e.touches.length === 2 && pinchStartDist) {
       e.preventDefault();
       const newDist = getTouchDist(e.touches);
       setLetterZoom(pinchStartZoom * (newDist / pinchStartDist));
@@ -197,18 +142,7 @@ if (letterModalViewport) {
   }, { passive: false });
 
   letterModalViewport.addEventListener('touchend', (e) => {
-    if (e.touches.length === 0) {
-      touchMode = null;
-      pinchStartDist = null;
-    } else if (e.touches.length === 1) {
-      // Went from pinching to one finger left — switch to panning from here
-      touchMode = 'pan';
-      pinchStartDist = null;
-      touchPanStartX = e.touches[0].clientX;
-      touchPanStartY = e.touches[0].clientY;
-      touchPanOriginX = letterPanX;
-      touchPanOriginY = letterPanY;
-    }
+    if (e.touches.length < 2) pinchStartDist = null;
   });
 }
 
