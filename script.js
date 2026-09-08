@@ -70,17 +70,39 @@ const letterModalClose = document.getElementById('letterModalClose');
 const letterModalViewport = document.getElementById('letterModalViewport');
 
 let letterZoom = 1;
+let letterBaseWidth = null;
+let letterBaseHeight = null;
 const LETTER_ZOOM_MIN = 1;
 const LETTER_ZOOM_MAX = 3;
 
 function setLetterZoom(zoom) {
   letterZoom = Math.min(LETTER_ZOOM_MAX, Math.max(LETTER_ZOOM_MIN, zoom));
-  if (letterModalImg) letterModalImg.style.transform = `scale(${letterZoom})`;
+  if (!letterModalImg) return;
+
+  if (letterZoom === 1) {
+    // Back to the normal fit-to-screen size
+    letterModalImg.style.width = '';
+    letterModalImg.style.height = '';
+    return;
+  }
+
+  // Capture the image's fitted size the first time we zoom in,
+  // then scale up from that so the box actually grows —
+  // that's what makes the container scrollable.
+  if (letterBaseWidth === null) {
+    const rect = letterModalImg.getBoundingClientRect();
+    letterBaseWidth = rect.width;
+    letterBaseHeight = rect.height;
+  }
+  letterModalImg.style.width = `${letterBaseWidth * letterZoom}px`;
+  letterModalImg.style.height = `${letterBaseHeight * letterZoom}px`;
 }
 
 function openLetterModal() {
   if (!letterModal) return;
   letterModal.classList.add('open');
+  letterBaseWidth = null;
+  letterBaseHeight = null;
   setLetterZoom(1);
   document.body.style.overflow = 'hidden'; // lock background scroll while modal is open
 }
@@ -88,6 +110,8 @@ function openLetterModal() {
 function closeLetterModal() {
   if (!letterModal) return;
   letterModal.classList.remove('open');
+  letterBaseWidth = null;
+  letterBaseHeight = null;
   setLetterZoom(1);
   document.body.style.overflow = '';
 }
