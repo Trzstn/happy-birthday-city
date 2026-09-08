@@ -50,6 +50,104 @@ if (envelope) {
 }
 
 // =====================================================
+// LETTER FULLSCREEN VIEWER — click the letter image (once
+// it's slid out of the envelope) to view it fullscreen.
+// Zoom by clicking the image again, scrolling (desktop),
+// or pinching with two fingers (mobile). Close with the
+// × button or by clicking the dark background.
+// =====================================================
+const letterImage = document.querySelector('.letter-image');
+const letterModal = document.getElementById('letterModal');
+const letterModalImg = document.getElementById('letterModalImg');
+const letterModalClose = document.getElementById('letterModalClose');
+const letterModalViewport = document.getElementById('letterModalViewport');
+
+let letterZoom = 1;
+const LETTER_ZOOM_MIN = 1;
+const LETTER_ZOOM_MAX = 3;
+
+function setLetterZoom(zoom) {
+  letterZoom = Math.min(LETTER_ZOOM_MAX, Math.max(LETTER_ZOOM_MIN, zoom));
+  if (letterModalImg) letterModalImg.style.transform = `scale(${letterZoom})`;
+}
+
+function openLetterModal() {
+  if (!letterModal) return;
+  letterModal.classList.add('open');
+  setLetterZoom(1);
+  document.body.style.overflow = 'hidden'; // lock background scroll while modal is open
+}
+
+function closeLetterModal() {
+  if (!letterModal) return;
+  letterModal.classList.remove('open');
+  setLetterZoom(1);
+  document.body.style.overflow = '';
+}
+
+if (letterImage && letterModal) {
+  letterImage.addEventListener('click', openLetterModal);
+}
+
+if (letterModalClose) {
+  letterModalClose.addEventListener('click', closeLetterModal);
+}
+
+// Click the dark backdrop (not the image itself) to close
+if (letterModal) {
+  letterModal.addEventListener('click', (e) => {
+    if (e.target === letterModal) closeLetterModal();
+  });
+}
+
+if (letterModalImg) {
+  // Click the image to toggle zoom in/out
+  letterModalImg.addEventListener('click', (e) => {
+    e.stopPropagation();
+    setLetterZoom(letterZoom === 1 ? 2 : 1);
+  });
+}
+
+// Desktop: scroll wheel to zoom in/out
+if (letterModalViewport) {
+  letterModalViewport.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    setLetterZoom(letterZoom + (e.deltaY < 0 ? 0.2 : -0.2));
+  }, { passive: false });
+}
+
+// Mobile: two-finger pinch to zoom
+let pinchStartDist = null;
+let pinchStartZoom = 1;
+
+function getTouchDist(touches) {
+  const dx = touches[0].clientX - touches[1].clientX;
+  const dy = touches[0].clientY - touches[1].clientY;
+  return Math.hypot(dx, dy);
+}
+
+if (letterModalViewport) {
+  letterModalViewport.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 2) {
+      pinchStartDist = getTouchDist(e.touches);
+      pinchStartZoom = letterZoom;
+    }
+  });
+
+  letterModalViewport.addEventListener('touchmove', (e) => {
+    if (e.touches.length === 2 && pinchStartDist) {
+      e.preventDefault();
+      const newDist = getTouchDist(e.touches);
+      setLetterZoom(pinchStartZoom * (newDist / pinchStartDist));
+    }
+  }, { passive: false });
+
+  letterModalViewport.addEventListener('touchend', (e) => {
+    if (e.touches.length < 2) pinchStartDist = null;
+  });
+}
+
+// =====================================================
 // 50 REASONS GRID — auto-generates 50 image slots.
 //
 // 🖼️ TO EDIT YOUR IMAGES:
