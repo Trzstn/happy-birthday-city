@@ -379,13 +379,17 @@ section { position: relative; }
   height: 100%;
   display: grid;
   place-items: center;
-  overflow: auto;
-  touch-action: pan-x pan-y; /* native one-finger scroll; pinch-zoom stays handled in script.js */
+  overflow: hidden; /* panning is now handled manually via transform, not native scroll */
+  touch-action: none; /* hand ALL touch gestures (pinch + drag) to script.js instead of the browser */
 }
 
 .letter-modal-img {
   max-width: 90vw;
   max-height: 90vh;
   object-fit: contain;
-  transition: width 0.25s ease, height 0.25s ease;
+  transform-origin: center center;
+  will-change: transform;
+  cursor: zoom-in;
+  user-select: none;
+  -webkit-user-drag: none;
 }
