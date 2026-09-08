@@ -100,14 +100,6 @@ if (letterModal) {
   });
 }
 
-if (letterModalImg) {
-  // Click the image to toggle zoom in/out
-  letterModalImg.addEventListener('click', (e) => {
-    e.stopPropagation();
-    setLetterZoom(letterZoom === 1 ? 2 : 1);
-  });
-}
-
 // Desktop: scroll wheel to zoom in/out
 if (letterModalViewport) {
   letterModalViewport.addEventListener('wheel', (e) => {
