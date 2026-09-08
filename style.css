@@ -311,6 +311,15 @@ section { position: relative; }
   }
 }
 
+/* Desktop only (4-column grid): center the last row (images 49 & 50)
+   under the same columns as 46 & 47, instead of hugging the left side.
+   Not needed on mobile — with 2 columns, 50 images divide evenly,
+   so the last row is already full. */
+@media (min-width: 701px) {
+  .reasons-grid img:nth-child(49) { grid-column: 2; }
+  .reasons-grid img:nth-child(50) { grid-column: 3; }
+}
+
 /* ============================================= */
 /* SECTION 5: CLOSING */
 /* ============================================= */
