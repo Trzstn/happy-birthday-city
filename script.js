@@ -59,7 +59,7 @@ if (envelope) {
 // =====================================================
 const REASONS_IMAGES = Array.from(
   { length: 50 },
-  (_, i) => `assets/PLACEHOLDER-REASON-${i + 1}.jpg`
+  (_, i) => `assets/PLACEHOLDER-REASON-${i + 1}.png`
 );
 
 const reasonsGrid = document.getElementById('reasonsGrid');
