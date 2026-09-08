@@ -390,5 +390,4 @@ section { position: relative; }
   object-fit: contain;
   transition: transform 0.25s ease;
   touch-action: none;
-  cursor: grab;
 }
